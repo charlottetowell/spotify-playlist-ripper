@@ -299,7 +299,8 @@ def dashboard():
 @app.route('/logout')
 def logout():
     """Logout and clear the session"""
-    session.clear()
+    session.clear()  # Clear all session data
+    print("Session cleared. Redirecting to home page.")
     return redirect('/')
 
 @app.route('/extract-playlists')
