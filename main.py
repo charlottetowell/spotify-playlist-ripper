@@ -359,12 +359,45 @@ def api_extract_tracks():
         return jsonify({'error': 'No playlists selected.'}), 400
 
     try:
-        tracks_data = []
+        playlists_data = []
         for playlist_id in selected_playlists:
+            # Fetch playlist details
+            playlist = make_spotify_request(f'/playlists/{playlist_id}', access_token)
             tracks = fetch_playlist_tracks(playlist_id, access_token)
-            tracks_data.extend(tracks)
 
-        return jsonify(tracks_data)
+            # Structure the playlist data
+            structured_playlist = {
+                'id': playlist_id,
+                'name': playlist['name'],
+                'description': playlist.get('description', ''),
+                'owner': playlist['owner']['display_name'],
+                'owner_id': playlist['owner']['id'],
+                'public': playlist['public'],
+                'collaborative': playlist['collaborative'],
+                'total_tracks': playlist['tracks']['total'],
+                'tracks': []
+            }
+
+            for track_item in tracks:
+                if track_item['track'] and track_item['track']['type'] == 'track':
+                    track = track_item['track']
+                    track_data = {
+                        'id': track['id'],
+                        'name': track['name'],
+                        'artists': [artist['name'] for artist in track['artists']],
+                        'album': track['album']['name'],
+                        'duration_ms': track['duration_ms'],
+                        'explicit': track['explicit'],
+                        'popularity': track['popularity'],
+                        'external_urls': track['external_urls'],
+                        'preview_url': track.get('preview_url'),
+                        'added_at': track_item.get('added_at')
+                    }
+                    structured_playlist['tracks'].append(track_data)
+
+            playlists_data.append(structured_playlist)
+
+        return jsonify(playlists_data)
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching tracks: {e}")
