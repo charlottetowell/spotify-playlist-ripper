@@ -263,11 +263,6 @@
             const playlists = JSON.parse('{{ playlists|tojson|safe }}');
             const userId = '{{ session["user_id"] }}'; // Injected from Python
 
-            console.log('User ID:', userId); // Log the user ID
-            if (playlists.length > 0) {
-                console.log('Sample Playlist Object:', playlists[0]); // Log one playlist object for structure comparison
-            }
-
             const statusElement = document.getElementById('status');
             const gridContainer = document.getElementById('playlist-grid');
             const selectAllButton = document.getElementById('select-all');
@@ -318,8 +313,8 @@
                     const card = button.parentElement;
                     const playlistId = card.dataset.playlistId;
                     const playlist = playlists.find(p => p.id === playlistId);
-                    if ((currentFilter === 'my' && playlist.owner?.id === userId) ||
-                        (currentFilter === 'all')) {
+                    if (playlist && ((currentFilter === 'my' && playlist.owner.id === userId) ||
+                        (currentFilter === 'all'))) {
                         button.classList.remove('select');
                         button.classList.add('unselect');
                         button.textContent = 'Unselect';
