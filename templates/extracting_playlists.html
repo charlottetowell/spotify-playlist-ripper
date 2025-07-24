@@ -14,16 +14,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 100vh;
+            height: auto; /* Allow page to scroll */
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px; /* More vertical padding */
+            overflow-y: auto; /* Enable scrolling for the entire page */
         }
 
         img {
             width: 100px;
             height: auto;
             image-rendering: pixelated;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         h1 {
@@ -31,6 +32,12 @@
             color: var(--primary-color);
             text-shadow: 2px 2px var(--shadow-color);
             font-family: 'Press Start 2P', cursive;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
@@ -75,13 +82,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
-            overflow-y: auto;
-            max-height: 50vh;
             width: 100%;
             padding: 10px;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
-            background-color: #1a1a1a;
         }
 
         .playlist-card {
@@ -91,13 +93,16 @@
             text-align: center;
             font-family: 'Press Start 2P', cursive;
             color: var(--primary-color);
+            font-size: 0.8rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .playlist-card input[type="checkbox"] {
             margin-top: 10px;
         }
 
-        .select-all {
+        .select-all, .unselect-all {
             background-color: var(--primary-color);
             color: var(--text-color);
             font-size: 1rem;
@@ -107,10 +112,9 @@
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Press Start 2P', cursive;
-            margin-bottom: 20px;
         }
 
-        .select-all:hover {
+        .select-all:hover, .unselect-all:hover {
             background-color: #148f4c;
         }
 
@@ -130,12 +134,23 @@
         .logout:hover {
             text-decoration: underline;
         }
+
+        .selected-count {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Press Start 2P', cursive;
+        }
     </style>
 </head>
 <body>
     <img src="/static/logo.png" alt="Spotify Logo">
-    <h1 id="status">X playlists found</h1>
-    <button id="select-all" class="select-all">Select All</button>
+    <h1 id="status">{{ playlists|length }} playlists found</h1>
+    <div class="button-container">
+        <button id="select-all" class="select-all">Select All</button>
+        <button id="unselect-all" class="unselect-all">Unselect All</button>
+    </div>
+    <p id="selected-count" class="selected-count">0 playlists selected</p>
     <div id="playlist-grid" class="playlist-grid"></div>
     <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 
@@ -143,9 +158,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const playlists = JSON.parse('{{ playlists|tojson|safe }}');
             const statusElement = document.getElementById('status');
-            const loadingElement = document.querySelector('.loading');
             const gridContainer = document.getElementById('playlist-grid');
             const selectAllButton = document.getElementById('select-all');
+            const unselectAllButton = document.getElementById('unselect-all');
+            const selectedCountElement = document.getElementById('selected-count');
 
             // Render playlists dynamically
             playlists.forEach(playlist => {
@@ -158,15 +174,32 @@
                 gridContainer.appendChild(card);
             });
 
+            // Update selected count
+            const updateSelectedCount = () => {
+                const selectedCount = document.querySelectorAll('.playlist-checkbox:checked').length;
+                selectedCountElement.textContent = `${selectedCount} playlists selected`;
+            };
+
             // Select all functionality
             selectAllButton.addEventListener('click', () => {
                 document.querySelectorAll('.playlist-checkbox').forEach(checkbox => {
                     checkbox.checked = true;
                 });
+                updateSelectedCount();
             });
 
+            // Unselect all functionality
+            unselectAllButton.addEventListener('click', () => {
+                document.querySelectorAll('.playlist-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateSelectedCount();
+            });
+
+            // Update count on checkbox change
+            gridContainer.addEventListener('change', updateSelectedCount);
+
             if (playlists.length > 0) {
-                loadingElement.style.display = 'none';
                 statusElement.textContent = `${playlists.length} playlists found`;
             } else {
                 statusElement.textContent = 'Loading playlists...';
