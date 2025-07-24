@@ -1,6 +1,21 @@
-# Spotify Playlist
+# Spotify Playlist Ripper
 
-## How to Use
+A Flask app that authorises with Spotify's web API to extract your playlist & track information into a downloadable JSON file.
+
+**Why?** Because it beats waiting "up to 30 days" for Spotify to email you a bulk data export of your account [🔗](https://support.spotify.com/au/article/understanding-my-data/)
+
+**Contents:**
+* [Demo](#demo)
+* [How to Run Locally](#running-locally)
+
+## Demo
+
+![Home Page Screenshot](/screenshots/HomePage.png)
+![Sup User Screenshot](/screenshots/SupUser.png)
+![Playlist Selector Screenshot](/screenshots/PlaylistSelector.png)
+![Tracks Extracted Screenshot](/screenshots/TracksExtracted.png)
+
+## Running Locally
 
 
 1. Install dependencies via `  pip install -r requirements.txt`
