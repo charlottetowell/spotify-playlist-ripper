@@ -262,6 +262,22 @@ def download_file(filename):
     else:
         return '<h1>Error:</h1><p>File not found.</p>'
 
+@app.route('/oauth/callback')
+def oauth_callback():
+    # Simulate token extraction logic here
+    # token = extract_token_logic()
+    return render_template('loading.html')
+
+@app.after_request
+def redirect_to_dashboard(response):
+    if response.status_code == 200 and request.path == '/oauth/callback':
+        return redirect('/dashboard')
+    return response
+
+@app.route('/dashboard')
+def dashboard():
+    return "Hello, World!"
+
 if __name__ == '__main__':
     PORT = 8080
     # Check if environment variables are set
