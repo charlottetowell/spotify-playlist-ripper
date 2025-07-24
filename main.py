@@ -296,6 +296,12 @@ def dashboard():
 
     return render_template('dashboard.html', user_name=user_name)
 
+@app.route('/logout')
+def logout():
+    """Logout and clear the session"""
+    session.clear()
+    return redirect('/')
+
 if __name__ == '__main__':
     PORT = 8080
     # Check if environment variables are set

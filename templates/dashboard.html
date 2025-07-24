@@ -47,12 +47,30 @@
             transform: translateY(-5px);
             box-shadow: 4px 4px 0 var(--shadow-color);
         }
+
+        button.logout {
+            background: none;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: 20px; /* Add more gap */
+            box-shadow: none; /* Remove box shadow */
+        }
+
+        button.logout:hover {
+            text-decoration: underline;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <img src="/static/logo.png" alt="Spotify Logo">
-    <h1>Sup {{ user_name }}</h1>
+    <h1>Sup {{ user_name }} :)</h1>
     <button onclick="window.location.href='/extract-playlists'">Start Extracting Playlists</button>
+    <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 </body>
 </html>
