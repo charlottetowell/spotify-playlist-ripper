@@ -128,12 +128,14 @@
                         return;
                     }
 
+                    // Calculate the total number of tracks
+                    const totalTracks = data.reduce((count, playlist) => count + playlist.tracks.length, 0);
+
                     // Hide loading screen and show summary
                     document.getElementById('loading-screen').style.display = 'none';
                     document.getElementById('summary-screen').style.display = 'block';
 
                     // Update summary text
-                    const totalTracks = data.length;
                     document.getElementById('summary-text').textContent = `${totalTracks} tracks extracted successfully!`;
 
                     // Handle download button
