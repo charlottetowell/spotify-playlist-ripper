@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Playlist Ripper</title>
     <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        body {
+            background-color: #13111b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        img {
+            width: 150px;
+            height: auto;
+            image-rendering: pixelated;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1ed760;
+            text-shadow: 2px 2px #000;
+        }
+
+        button {
+            background-color: #1ed760;
+            color: #13111b;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        button:hover {
+            background-color: #148f4c;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <img src="/static/logo.png" alt="Spotify Logo">
     <h1>Spotify Playlist Ripper</h1>
-    <p>Click the link below to authenticate with Spotify:</p>
-    <a href="/login">Login with Spotify</a>
+    <button onclick="window.location.href='/login'">Login With Spotify</button>
 </body>
 </html>
