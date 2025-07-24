@@ -90,16 +90,48 @@
             background-color: var(--background-color);
             border: 2px solid var(--primary-color);
             padding: 10px;
-            text-align: center;
+            text-align: left;
             font-family: 'Press Start 2P', cursive;
             color: var(--primary-color);
-            font-size: 0.8rem;
+            font-size: 0.2rem;
+            text-decoration: none;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            position: relative; 
         }
 
-        .playlist-card input[type="checkbox"] {
-            margin-top: 10px;
+        .playlist-card img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .playlist-card button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+        }
+
+        .playlist-card button:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .playlist-card button.select {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .playlist-card button.unselect {
+            background-color: #444;
+            color: var(--primary-color);
         }
 
         .select-all, .unselect-all {
@@ -168,36 +200,46 @@
                 const card = document.createElement('div');
                 card.className = 'playlist-card';
                 card.innerHTML = `
+                    <img src="/static/music-note.png" alt="Music Note">
                     <p>${playlist.name}</p>
-                    <input type="checkbox" value="${playlist.id}" class="playlist-checkbox">
+                    <button class="select" onclick="toggleSelect(this)">Select</button>
                 `;
                 gridContainer.appendChild(card);
             });
 
+            // Toggle select/unselect functionality
+            window.toggleSelect = (button) => {
+                button.classList.toggle('select');
+                button.classList.toggle('unselect');
+                button.textContent = button.classList.contains('unselect') ? 'Unselect' : 'Select';
+                updateSelectedCount();
+            };
+
             // Update selected count
             const updateSelectedCount = () => {
-                const selectedCount = document.querySelectorAll('.playlist-checkbox:checked').length;
+                const selectedCount = document.querySelectorAll('.playlist-card button.unselect').length;
                 selectedCountElement.textContent = `${selectedCount} playlists selected`;
             };
 
             // Select all functionality
             selectAllButton.addEventListener('click', () => {
-                document.querySelectorAll('.playlist-checkbox').forEach(checkbox => {
-                    checkbox.checked = true;
+                document.querySelectorAll('.playlist-card button.select').forEach(button => {
+                    button.classList.remove('select');
+                    button.classList.add('unselect');
+                    button.textContent = 'Unselect';
                 });
                 updateSelectedCount();
             });
 
             // Unselect all functionality
             unselectAllButton.addEventListener('click', () => {
-                document.querySelectorAll('.playlist-checkbox').forEach(checkbox => {
-                    checkbox.checked = false;
+                document.querySelectorAll('.playlist-card button.unselect').forEach(button => {
+                    button.classList.remove('unselect');
+                    button.classList.add('select');
+                    button.textContent = 'Select';
                 });
                 updateSelectedCount();
             });
-
-            // Update count on checkbox change
-            gridContainer.addEventListener('change', updateSelectedCount);
 
             if (playlists.length > 0) {
                 statusElement.textContent = `${playlists.length} playlists found`;
