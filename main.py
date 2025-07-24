@@ -326,6 +326,37 @@ def extract_playlists():
 
     return render_template('extracting_playlists.html', playlists=playlists)
 
+@app.route('/set-selected-playlists', methods=['POST'])
+def set_selected_playlists():
+    """Store selected playlists in the session"""
+    selected_playlists = request.json.get('playlists', [])
+    session['selected_playlists'] = selected_playlists
+    return '', 204
+
+@app.route('/extract-tracks')
+def extract_tracks():
+    """Extract tracks for selected playlists"""
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect('/login')
+
+    selected_playlists = session.get('selected_playlists', [])
+    if not selected_playlists:
+        return '<h1>Error:</h1><p>No playlists selected. Please go back and select at least one playlist.</p>'
+
+    try:
+        tracks_data = []
+        for playlist_id in selected_playlists:
+            tracks = fetch_playlist_tracks(playlist_id, access_token)
+            tracks_data.extend(tracks)
+
+        # Process tracks_data as needed (e.g., save to file, display, etc.)
+        return jsonify(tracks_data)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching tracks: {e}")
+        return '<h1>Error:</h1><p>Failed to fetch tracks. Please try again later.</p>'
+
 if __name__ == '__main__':
     PORT = 8080
     # Check if environment variables are set

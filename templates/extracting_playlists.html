@@ -207,6 +207,33 @@
             color: var(--primary-color);
             outline: none;
         }
+
+        .selected-count-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .extract-tracks {
+            margin-top: 10px; /* Add spacing between count and button */
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+            display: none; /* Initially hidden */
+        }
+
+        .extract-tracks:hover {
+            background-color: #0f6e38;
+        }
     </style>
 </head>
 <body>
@@ -216,7 +243,10 @@
         <button id="select-all" class="select-all">Select All</button>
         <button id="unselect-all" class="unselect-all">Unselect All</button>
     </div>
-    <p id="selected-count" class="selected-count">0 playlists selected</p>
+     <div class="selected-count-container">
+        <p id="selected-count" class="selected-count"></p> <!-- Use the existing selected count -->
+        <button id="extract-tracks" class="extract-tracks" onclick="extractTracks()">Extract Tracks</button>
+    </div>
     <div class="search-container">
         <img src="/static/search.png" alt="Search Icon">
         <input type="text" id="search-bar" placeholder="Search playlists by name...">
@@ -233,6 +263,7 @@
             const unselectAllButton = document.getElementById('unselect-all');
             const selectedCountElement = document.getElementById('selected-count');
             const searchBar = document.getElementById('search-bar');
+            const extractTracksButton = document.getElementById('extract-tracks');
 
             // Render playlists dynamically
             const renderPlaylists = (playlistsToRender) => {
@@ -240,6 +271,7 @@
                 playlistsToRender.forEach(playlist => {
                     const card = document.createElement('div');
                     card.className = 'playlist-card';
+                    card.dataset.playlistId = playlist.id; // Assuming playlist object has an 'id' property
                     card.innerHTML = `
                         <img src="/static/music-note.png" alt="Music Note">
                         <p>${playlist.name}</p>
@@ -263,6 +295,7 @@
             const updateSelectedCount = () => {
                 const selectedCount = document.querySelectorAll('.playlist-card button.unselect').length;
                 selectedCountElement.textContent = `${selectedCount} playlists selected`;
+                extractTracksButton.style.display = selectedCount > 0 ? 'block' : 'none'; // Show/hide button
             };
 
             // Select all functionality
@@ -290,6 +323,14 @@
                 const searchTerm = e.target.value.toLowerCase();
                 const filteredPlaylists = playlists.filter(playlist => playlist.name.toLowerCase().includes(searchTerm));
                 renderPlaylists(filteredPlaylists);
+            });
+
+            // Extract tracks button functionality
+            extractTracksButton.addEventListener('click', () => {
+                const selectedPlaylists = Array.from(document.querySelectorAll('.playlist-card button.unselect'))
+                    .map(button => button.parentElement.querySelector('p').textContent);
+                const encodedPlaylists = encodeURIComponent(JSON.stringify(selectedPlaylists));
+                window.location.href = `/extract-tracks?playlists=${encodedPlaylists}`;
             });
 
             if (playlists.length > 0) {
