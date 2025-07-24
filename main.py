@@ -13,7 +13,7 @@ app.secret_key = secrets.token_hex(16)  # Generate a random secret key
 # Spotify OAuth configuration
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
-REDIRECT_URI = 'http://127.0.0.1:8080/callback'
+REDIRECT_URI = 'http://127.0.0.1:8080/oauth/callback'
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SCOPES = 'playlist-read-private playlist-read-collaborative'
@@ -46,13 +46,9 @@ def login():
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
     return redirect(auth_url)
 
-@app.route('/callback')
+@app.route('/oauth/callback')
 def callback():
     """Handle OAuth callback from Spotify"""
-    # Check for errors
-    error = request.args.get('error')
-    if error:
-        return f'<h1>Error:</h1><p>{error}</p>'
     
     # Verify state parameter
     state = request.args.get('state')
@@ -105,13 +101,13 @@ def callback():
         return f'<h1>Error:</h1><p>Failed to exchange code for token: {e}</p>'
 
 if __name__ == '__main__':
+    PORT = 8080
     # Check if environment variables are set
     if not SPOTIFY_CLIENT_ID or not SPOTIFY_CLIENT_SECRET:
-        print("Error: Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in your .env file")
+        print(".env variables SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET not configured correctly")
         exit(1)
     
     print("Starting Spotify Playlist Ripper...")
-    print(f"Server will run at: http://127.0.0.1:8080")
-    print("Make sure to add http://127.0.0.1:8080/callback as a redirect URI in your Spotify app settings")
+    print(f"Server running at: http://127.0.0.1:{PORT}")
     
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=PORT, debug=True)
