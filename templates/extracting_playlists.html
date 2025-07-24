@@ -173,6 +173,37 @@
             margin-bottom: 20px;
             font-family: 'Press Start 2P', cursive;
         }
+
+        .search-container {
+            height: 30px; /* Reduce the height */
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+            background-color: var(--background-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .search-container img {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+            margin-right: 10px;
+            margin-top: 35px;
+        }
+
+        .search-container input {
+            flex: 1;
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -183,6 +214,10 @@
         <button id="unselect-all" class="unselect-all">Unselect All</button>
     </div>
     <p id="selected-count" class="selected-count">0 playlists selected</p>
+    <div class="search-container">
+        <img src="/static/search.png" alt="Search Icon">
+        <input type="text" id="search-bar" placeholder="Search playlists by name...">
+    </div>
     <div id="playlist-grid" class="playlist-grid"></div>
     <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 
@@ -194,18 +229,24 @@
             const selectAllButton = document.getElementById('select-all');
             const unselectAllButton = document.getElementById('unselect-all');
             const selectedCountElement = document.getElementById('selected-count');
+            const searchBar = document.getElementById('search-bar');
 
             // Render playlists dynamically
-            playlists.forEach(playlist => {
-                const card = document.createElement('div');
-                card.className = 'playlist-card';
-                card.innerHTML = `
-                    <img src="/static/music-note.png" alt="Music Note">
-                    <p>${playlist.name}</p>
-                    <button class="select" onclick="toggleSelect(this)">Select</button>
-                `;
-                gridContainer.appendChild(card);
-            });
+            const renderPlaylists = (playlistsToRender) => {
+                gridContainer.innerHTML = ''; // Clear existing playlists
+                playlistsToRender.forEach(playlist => {
+                    const card = document.createElement('div');
+                    card.className = 'playlist-card';
+                    card.innerHTML = `
+                        <img src="/static/music-note.png" alt="Music Note">
+                        <p>${playlist.name}</p>
+                        <button class="select" onclick="toggleSelect(this)">Select</button>
+                    `;
+                    gridContainer.appendChild(card);
+                });
+            };
+
+            renderPlaylists(playlists); // Initial render
 
             // Toggle select/unselect functionality
             window.toggleSelect = (button) => {
@@ -239,6 +280,13 @@
                     button.textContent = 'Select';
                 });
                 updateSelectedCount();
+            });
+
+            // Search functionality
+            searchBar.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredPlaylists = playlists.filter(playlist => playlist.name.toLowerCase().includes(searchTerm));
+                renderPlaylists(filteredPlaylists);
             });
 
             if (playlists.length > 0) {
