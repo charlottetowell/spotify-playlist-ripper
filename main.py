@@ -302,6 +302,10 @@ def logout():
     session.clear()
     return redirect('/')
 
+@app.route('/extract-playlists')
+def extract_playlists():
+    return render_template('extracting_playlists.html')
+
 if __name__ == '__main__':
     PORT = 8080
     # Check if environment variables are set
