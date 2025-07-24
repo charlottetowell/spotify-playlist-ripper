@@ -328,9 +328,25 @@
             // Extract tracks button functionality
             extractTracksButton.addEventListener('click', () => {
                 const selectedPlaylists = Array.from(document.querySelectorAll('.playlist-card button.unselect'))
-                    .map(button => button.parentElement.querySelector('p').textContent);
-                const encodedPlaylists = encodeURIComponent(JSON.stringify(selectedPlaylists));
-                window.location.href = `/extract-tracks?playlists=${encodedPlaylists}`;
+                    .map(button => button.parentElement.dataset.playlistId); // Use playlist ID instead of name
+
+                // Send selected playlists to the backend
+                fetch('/set-selected-playlists', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ playlists: selectedPlaylists })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirect to extract tracks route
+                        window.location.href = '/extract-tracks';
+                    } else {
+                        console.error('Failed to set selected playlists');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
             });
 
             if (playlists.length > 0) {

@@ -335,7 +335,7 @@ def set_selected_playlists():
 
 @app.route('/extract-tracks')
 def extract_tracks():
-    """Extract tracks for selected playlists"""
+    """Render the extract tracks page and handle track extraction asynchronously"""
     access_token = session.get('access_token')
     if not access_token:
         return redirect('/login')
@@ -344,18 +344,8 @@ def extract_tracks():
     if not selected_playlists:
         return '<h1>Error:</h1><p>No playlists selected. Please go back and select at least one playlist.</p>'
 
-    try:
-        tracks_data = []
-        for playlist_id in selected_playlists:
-            tracks = fetch_playlist_tracks(playlist_id, access_token)
-            tracks_data.extend(tracks)
-
-        # Process tracks_data as needed (e.g., save to file, display, etc.)
-        return jsonify(tracks_data)
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching tracks: {e}")
-        return '<h1>Error:</h1><p>Failed to fetch tracks. Please try again later.</p>'
+    # Render the extract_tracks.html page
+    return render_template('extract_tracks.html')
 
 if __name__ == '__main__':
     PORT = 8080

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Tracks</title>
+    <link rel="stylesheet" href="/static/css/colours.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            image-rendering: pixelated;
+            margin-bottom: 40px;
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loading div {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            animation: flash 1.5s infinite;
+        }
+
+        .loading div:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .loading div:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .summary {
+            display: none;
+            text-align: center;
+        }
+
+        .summary p {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .summary button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .summary button:hover {
+            background-color: #148f4c;
+        }
+
+        .logout {
+            background: none;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/logo.png" alt="Spotify Logo">
+
+    <div class="loading" id="loading-screen">
+        <p>Extracting tracks...</p>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="summary" id="summary-screen">
+        <p id="summary-text"></p>
+        <button id="download-json">Download as JSON</button>
+    </div>
+
+    <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulate backend processing
+            fetch('/extract-tracks')
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading screen and show summary
+                    document.getElementById('loading-screen').style.display = 'none';
+                    document.getElementById('summary-screen').style.display = 'block';
+
+                    // Update summary text
+                    const totalTracks = data.length;
+                    document.getElementById('summary-text').textContent = `${totalTracks} tracks extracted successfully!`;
+
+                    // Handle download button
+                    document.getElementById('download-json').addEventListener('click', () => {
+                        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'extracted_tracks.json';
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error extracting tracks:', error);
+                });
+        });
+    </script>
+</body>
+</html>
