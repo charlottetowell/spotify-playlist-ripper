@@ -15,6 +15,8 @@ A Flask app that authorises with Spotify's web API to extract your playlist & tr
 ![Playlist Selector Screenshot](/screenshots/PlaylistSelector.png)
 ![Tracks Extracted Screenshot](/screenshots/TracksExtracted.png)
 
+Bad pixel art by me :)
+
 ## Running Locally
 
 
