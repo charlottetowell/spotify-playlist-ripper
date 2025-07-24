@@ -6,6 +6,7 @@
     <title>Extract Tracks</title>
     <link rel="stylesheet" href="/static/css/colours.css">
     <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/loading.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
@@ -26,36 +27,18 @@
             image-rendering: pixelated;
             margin-bottom: 40px;
         }
-
-        .loading {
+        
+        .loading-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
 
-        .loading div {
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary-color);
-            animation: flash 1.5s infinite;
-        }
-
-        .loading div:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-
-        .loading div:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes flash {
-            0%, 100% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
+        .loading-container p {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
 
         .summary {
@@ -120,11 +103,14 @@
 <body>
     <img src="/static/logo.png" alt="Spotify Logo">
 
-    <div class="loading" id="loading-screen">
+    <div class="loading-container" id="loading-screen">
         <p>Extracting tracks...</p>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="loading">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 
     <div class="summary" id="summary-screen">
@@ -132,11 +118,11 @@
         <button id="download-json">Download as JSON</button>
     </div>
 
-    <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
     <button class="go-back" onclick="window.location.href='/extract-playlists'">
         <img src="/static/left-arrow.png" alt="Left Arrow" class="arrow-icon">
         Go Back
     </button>
+    <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
