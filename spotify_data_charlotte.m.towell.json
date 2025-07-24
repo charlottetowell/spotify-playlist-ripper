@@ -1,851 +1,98 @@
 {
   "playlists": [
     {
-      "id": "60toQetovvzCSRqiPWzNLX",
-      "name": "bands + artists ive seen live",
-      "description": "",
+      "id": "0Y85Uy4jaPBWPPZ0XmDj1g",
+      "name": "My top tracks playlist",
+      "description": "Playlist created by the tutorial on developer.spotify.com",
       "owner": "Charlotte",
       "owner_id": "charlotte.m.towell",
       "public": true,
       "collaborative": false,
-      "total_tracks": 52,
-      "fetched_tracks": 52,
+      "total_tracks": 5,
+      "fetched_tracks": 5,
       "external_urls": {
-        "spotify": "https://open.spotify.com/playlist/60toQetovvzCSRqiPWzNLX"
+        "spotify": "https://open.spotify.com/playlist/0Y85Uy4jaPBWPPZ0XmDj1g"
       },
       "tracks": [
         {
-          "id": "5fR8XrWAQrIkkPy7kdYyMo",
-          "name": "Tiffany Blews",
+          "id": "2qSkIjg1o9h3YT9RAgYN75",
+          "name": "Espresso",
           "artists": [
-            "Fall Out Boy"
+            "Sabrina Carpenter"
           ],
-          "album": "Folie à Deux",
-          "duration_ms": 223986,
-          "explicit": false,
-          "popularity": 44,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5fR8XrWAQrIkkPy7kdYyMo"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:21:10Z"
-        },
-        {
-          "id": "1RUGgYVlt1k5DXIwTvY8Kp",
-          "name": "Fake Friends",
-          "artists": [
-            "The Vanns"
-          ],
-          "album": "Through the Walls",
-          "duration_ms": 308065,
+          "album": "Espresso",
+          "duration_ms": 175459,
           "explicit": true,
-          "popularity": 44,
+          "popularity": 90,
           "external_urls": {
-            "spotify": "https://open.spotify.com/track/1RUGgYVlt1k5DXIwTvY8Kp"
+            "spotify": "https://open.spotify.com/track/2qSkIjg1o9h3YT9RAgYN75"
           },
           "preview_url": null,
-          "added_at": "2021-08-29T11:21:28Z"
+          "added_at": "2025-07-24T07:03:16Z"
         },
         {
-          "id": "6VQgk5DqFJxBCkePySNFV5",
-          "name": "West End Riot",
+          "id": "0b0Dz0Gi86SVdBxYeiQcCP",
+          "name": "Busy Woman",
           "artists": [
-            "The Living End"
+            "Sabrina Carpenter"
           ],
-          "album": "The Living End",
-          "duration_ms": 233800,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6VQgk5DqFJxBCkePySNFV5"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:21:42Z"
-        },
-        {
-          "id": "6FPnecQDKOWSAKDKBAZ7ZG",
-          "name": "The Dolphin's Cry",
-          "artists": [
-            "Live"
-          ],
-          "album": "The Distance To Here",
-          "duration_ms": 264160,
-          "explicit": false,
-          "popularity": 61,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6FPnecQDKOWSAKDKBAZ7ZG"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:21:54Z"
-        },
-        {
-          "id": "4rpyni0WWSoqshaMiukbdj",
-          "name": "Working For The Man",
-          "artists": [
-            "Mental As Anything"
-          ],
-          "album": "Surf & Mull & Sex & Fun: The Classic Recordings Of Mental As Anything",
-          "duration_ms": 203490,
-          "explicit": false,
-          "popularity": 30,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/4rpyni0WWSoqshaMiukbdj"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:22:21Z"
-        },
-        {
-          "id": "3cnzdAce7pgYYnyeU3yrY4",
-          "name": "Fall Down",
-          "artists": [
-            "Jebediah"
-          ],
-          "album": "Jebediah",
-          "duration_ms": 199186,
-          "explicit": false,
-          "popularity": 30,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3cnzdAce7pgYYnyeU3yrY4"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:22:44Z"
-        },
-        {
-          "id": "4g33kYin7TM4KwlB9ZxIqP",
-          "name": "The Nosebleed Section",
-          "artists": [
-            "Hilltop Hoods"
-          ],
-          "album": "The Calling",
-          "duration_ms": 219640,
+          "album": "Short n' Sweet (Deluxe)",
+          "duration_ms": 186612,
           "explicit": true,
-          "popularity": 1,
+          "popularity": 88,
           "external_urls": {
-            "spotify": "https://open.spotify.com/track/4g33kYin7TM4KwlB9ZxIqP"
+            "spotify": "https://open.spotify.com/track/0b0Dz0Gi86SVdBxYeiQcCP"
           },
           "preview_url": null,
-          "added_at": "2021-08-29T11:23:04Z"
+          "added_at": "2025-07-24T07:03:16Z"
         },
         {
-          "id": "1IhLUUzMxDDJ9pzfT95exy",
-          "name": "Seven Seas Of Rhye - Remastered 2011",
+          "id": "2FKTlreAXKNWQPRgwAQMwV",
+          "name": "Funnel of Love",
           "artists": [
-            "Queen"
+            "The Young Veins"
           ],
-          "album": "Queen II (Deluxe Edition 2011 Remaster)",
-          "duration_ms": 168973,
-          "explicit": false,
-          "popularity": 58,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1IhLUUzMxDDJ9pzfT95exy"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:23:23Z"
-        },
-        {
-          "id": "5qnqVH96GFq3Qo71lEkFT5",
-          "name": "Saturday Sun",
-          "artists": [
-            "Vance Joy"
-          ],
-          "album": "Nation of Two",
-          "duration_ms": 214746,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5qnqVH96GFq3Qo71lEkFT5"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:23:38Z"
-        },
-        {
-          "id": "1lguQJjlNrIOoOylYVZN3M",
-          "name": "The Judge",
-          "artists": [
-            "Twenty One Pilots"
-          ],
-          "album": "Blurryface",
-          "duration_ms": 297760,
-          "explicit": false,
-          "popularity": 68,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1lguQJjlNrIOoOylYVZN3M"
-          },
-          "preview_url": null,
-          "added_at": "2021-08-29T11:24:10Z"
-        },
-        {
-          "id": "1OhyE4pJdNDLvBjJsc6mo3",
-          "name": "Let Me Down Easy",
-          "artists": [
-            "Sheppard"
-          ],
-          "album": "Bombs Away",
-          "duration_ms": 227631,
+          "album": "Take a Vacation! (Deluxe Edition / Remastered)",
+          "duration_ms": 159613,
           "explicit": false,
           "popularity": 40,
           "external_urls": {
-            "spotify": "https://open.spotify.com/track/1OhyE4pJdNDLvBjJsc6mo3"
+            "spotify": "https://open.spotify.com/track/2FKTlreAXKNWQPRgwAQMwV"
           },
           "preview_url": null,
-          "added_at": "2021-08-29T11:24:29Z"
+          "added_at": "2025-07-24T07:03:16Z"
         },
         {
-          "id": "5EJxQyGjeiSImb3RnpP2Ao",
-          "name": "Funky Tonight",
+          "id": "4VGvosVIeFMCUwHibq7a9Z",
+          "name": "Encore",
           "artists": [
-            "John Butler Trio"
+            "Red Hot Chili Peppers"
           ],
-          "album": "Grand National",
-          "duration_ms": 328240,
+          "album": "The Getaway",
+          "duration_ms": 254866,
           "explicit": false,
-          "popularity": 35,
+          "popularity": 54,
           "external_urls": {
-            "spotify": "https://open.spotify.com/track/5EJxQyGjeiSImb3RnpP2Ao"
+            "spotify": "https://open.spotify.com/track/4VGvosVIeFMCUwHibq7a9Z"
           },
           "preview_url": null,
-          "added_at": "2021-08-29T11:25:02Z"
+          "added_at": "2025-07-24T07:03:16Z"
         },
         {
-          "id": "6z9ehfxE973fOlKJKNJL2x",
-          "name": "Blue Sky Mine - 2011 Remaster",
+          "id": "2LD2gT7gwAurzdQDQtILds",
+          "name": "Veridis Quo",
           "artists": [
-            "Midnight Oil"
+            "Daft Punk"
           ],
-          "album": "Blue Sky Mining (Remastered)",
-          "duration_ms": 255600,
+          "album": "Discovery",
+          "duration_ms": 345186,
           "explicit": false,
-          "popularity": 59,
+          "popularity": 75,
           "external_urls": {
-            "spotify": "https://open.spotify.com/track/6z9ehfxE973fOlKJKNJL2x"
+            "spotify": "https://open.spotify.com/track/2LD2gT7gwAurzdQDQtILds"
           },
           "preview_url": null,
-          "added_at": "2021-08-29T11:25:18Z"
-        },
-        {
-          "id": "76E8a4RpGU6XJfGx0q5wXo",
-          "name": "Slave",
-          "artists": [
-            "Ruby Gilbert"
-          ],
-          "album": "Slave",
-          "duration_ms": 164327,
-          "explicit": false,
-          "popularity": 1,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/76E8a4RpGU6XJfGx0q5wXo"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-06T03:32:22Z"
-        },
-        {
-          "id": "4yNE9jXfXTKSW7f2Zg4aWg",
-          "name": "Do You Care?",
-          "artists": [
-            "Dusty"
-          ],
-          "album": "Do You Care?",
-          "duration_ms": 197757,
-          "explicit": false,
-          "popularity": 3,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/4yNE9jXfXTKSW7f2Zg4aWg"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-13T06:01:13Z"
-        },
-        {
-          "id": "2y62tEyb8PIxzJERhcKPe1",
-          "name": "Crazy",
-          "artists": [
-            "Mister Sister"
-          ],
-          "album": "Crazy",
-          "duration_ms": 169000,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/2y62tEyb8PIxzJERhcKPe1"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-13T06:01:19Z"
-        },
-        {
-          "id": "5CVczuzXlEm4XEAMSEBk8e",
-          "name": "Drinking Jokers",
-          "artists": [
-            "Brixton Alley"
-          ],
-          "album": "303",
-          "duration_ms": 189640,
-          "explicit": false,
-          "popularity": 5,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5CVczuzXlEm4XEAMSEBk8e"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-13T06:01:25Z"
-        },
-        {
-          "id": "5hd8tckBKbGQieJdG5ekkn",
-          "name": "Snake Eyes",
-          "artists": [
-            "Jane Street"
-          ],
-          "album": "Snake Eyes",
-          "duration_ms": 203073,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5hd8tckBKbGQieJdG5ekkn"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-19T11:44:34Z"
-        },
-        {
-          "id": "3pDUgpDbcorOesuu6f2yeQ",
-          "name": "Lavender",
-          "artists": [
-            "Harry Wall",
-            "Lucy Francesca Dron"
-          ],
-          "album": "Lavender",
-          "duration_ms": 233766,
-          "explicit": true,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3pDUgpDbcorOesuu6f2yeQ"
-          },
-          "preview_url": null,
-          "added_at": "2021-09-19T11:44:44Z"
-        },
-        {
-          "id": "3YKStPyEFUNxmLX9CIWWJW",
-          "name": "Waterhole",
-          "artists": [
-            "Annoying Neighbours"
-          ],
-          "album": "Waterhole",
-          "duration_ms": 254156,
-          "explicit": false,
-          "popularity": 2,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3YKStPyEFUNxmLX9CIWWJW"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-25T09:33:46Z"
-        },
-        {
-          "id": "5Bix5KU6mUGaaVohLAK2cU",
-          "name": "Out Cold",
-          "artists": [
-            "Blonded"
-          ],
-          "album": "Out Cold",
-          "duration_ms": 256562,
-          "explicit": true,
-          "popularity": 1,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5Bix5KU6mUGaaVohLAK2cU"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-25T09:33:56Z"
-        },
-        {
-          "id": "1terXJBh6uhMGKFuCfzRHc",
-          "name": "Talk2U2Nite",
-          "artists": [
-            "ALLORA"
-          ],
-          "album": "Talk2U2Nite",
-          "duration_ms": 187047,
-          "explicit": true,
-          "popularity": 8,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1terXJBh6uhMGKFuCfzRHc"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-25T09:35:06Z"
-        },
-        {
-          "id": "027tqHzcbVfqP2h6mxUX1k",
-          "name": "Love Song",
-          "artists": [
-            "Naomi Connell"
-          ],
-          "album": "Draped in Wine",
-          "duration_ms": 213413,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/027tqHzcbVfqP2h6mxUX1k"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-25T09:35:11Z"
-        },
-        {
-          "id": "2G5TLqAaBdIuKLyfQVcB5E",
-          "name": "Tunnel Vision",
-          "artists": [
-            "Pipin"
-          ],
-          "album": "Tunnel Vision",
-          "duration_ms": 245183,
-          "explicit": false,
-          "popularity": 2,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/2G5TLqAaBdIuKLyfQVcB5E"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-25T09:35:12Z"
-        },
-        {
-          "id": "5nikrNjcpPyofwkTwrtGC3",
-          "name": "FIGJAM",
-          "artists": [
-            "Butterfingers"
-          ],
-          "album": "The Deeper You Dig",
-          "duration_ms": 214720,
-          "explicit": true,
-          "popularity": 48,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5nikrNjcpPyofwkTwrtGC3"
-          },
-          "preview_url": null,
-          "added_at": "2021-10-30T11:05:38Z"
-        },
-        {
-          "id": "1iSscYiFxqI5ppwsdUIwgc",
-          "name": "Miscommunication",
-          "artists": [
-            "Concrete Surfers"
-          ],
-          "album": "Miscommunication",
-          "duration_ms": 207787,
-          "explicit": true,
-          "popularity": 36,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1iSscYiFxqI5ppwsdUIwgc"
-          },
-          "preview_url": null,
-          "added_at": "2021-11-08T10:57:19Z"
-        },
-        {
-          "id": "0WB585gO07KTzzp0OBROIp",
-          "name": "Decisions, Commitments & Plans",
-          "artists": [
-            "Bugs"
-          ],
-          "album": "Decisions, Commitments & Plans",
-          "duration_ms": 182880,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/0WB585gO07KTzzp0OBROIp"
-          },
-          "preview_url": null,
-          "added_at": "2021-11-08T10:57:33Z"
-        },
-        {
-          "id": "0UaHEuti0FTCCCInDOICPo",
-          "name": "Strikeout",
-          "artists": [
-            "The Plane Sailors"
-          ],
-          "album": "Strikeout",
-          "duration_ms": 217387,
-          "explicit": false,
-          "popularity": 1,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/0UaHEuti0FTCCCInDOICPo"
-          },
-          "preview_url": null,
-          "added_at": "2021-11-08T10:57:45Z"
-        },
-        {
-          "id": "39uUVImdhfZmDdbq4xectp",
-          "name": "Don't Fuck With Joe",
-          "artists": [
-            "The Blackwater Fever"
-          ],
-          "album": "The Depths",
-          "duration_ms": 204550,
-          "explicit": true,
-          "popularity": 44,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/39uUVImdhfZmDdbq4xectp"
-          },
-          "preview_url": null,
-          "added_at": "2021-11-08T21:45:32Z"
-        },
-        {
-          "id": "1IkMveZnWA8aYDuQ4eVCKw",
-          "name": "Good Life",
-          "artists": [
-            "The Dandys"
-          ],
-          "album": "Good Life",
-          "duration_ms": 209440,
-          "explicit": false,
-          "popularity": 12,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1IkMveZnWA8aYDuQ4eVCKw"
-          },
-          "preview_url": null,
-          "added_at": "2021-11-25T10:42:35Z"
-        },
-        {
-          "id": "5GmStpgd0UjeHF4Wa6jygh",
-          "name": "So Pretty",
-          "artists": [
-            "Hazel Mei"
-          ],
-          "album": "Lost & Found",
-          "duration_ms": 276999,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/5GmStpgd0UjeHF4Wa6jygh"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-06T07:31:21Z"
-        },
-        {
-          "id": "123SfPs1gJJl5nHCEl3nEu",
-          "name": "Kissed You In The Car",
-          "artists": [
-            "Cheap Date"
-          ],
-          "album": "Kissed You In The Car",
-          "duration_ms": 219903,
-          "explicit": false,
-          "popularity": 5,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/123SfPs1gJJl5nHCEl3nEu"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-06T07:31:31Z"
-        },
-        {
-          "id": "2GJu60LoYphb4QfIj91ihw",
-          "name": "Sobercoaster",
-          "artists": [
-            "Beddy Rays"
-          ],
-          "album": "Sobercoaster",
-          "duration_ms": 162319,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/2GJu60LoYphb4QfIj91ihw"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-06T07:31:52Z"
-        },
-        {
-          "id": "6ReCnO15YZEJGmgyGuF4Dh",
-          "name": "Those Eyes",
-          "artists": [
-            "Harley"
-          ],
-          "album": "Those Eyes",
-          "duration_ms": 236619,
-          "explicit": false,
-          "popularity": 5,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6ReCnO15YZEJGmgyGuF4Dh"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-06T07:32:27Z"
-        },
-        {
-          "id": "3CLY2cPYPhwy4dlJHCHxrQ",
-          "name": "Pretty",
-          "artists": [
-            "Venner Road"
-          ],
-          "album": "Pretty",
-          "duration_ms": 302266,
-          "explicit": true,
-          "popularity": 2,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3CLY2cPYPhwy4dlJHCHxrQ"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-06T07:32:33Z"
-        },
-        {
-          "id": "3hhzGYu6dcXsNCzf8n9pdK",
-          "name": "Lullaby",
-          "artists": [
-            "Chelsea Drive"
-          ],
-          "album": "Lullaby",
-          "duration_ms": 244874,
-          "explicit": false,
-          "popularity": 2,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3hhzGYu6dcXsNCzf8n9pdK"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-07T07:11:51Z"
-        },
-        {
-          "id": "6uQN23LUUw4ZTXoJcgfZmG",
-          "name": "Best End",
-          "artists": [
-            "Kurilpa Reach"
-          ],
-          "album": "Best End",
-          "duration_ms": 200718,
-          "explicit": false,
-          "popularity": 19,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6uQN23LUUw4ZTXoJcgfZmG"
-          },
-          "preview_url": null,
-          "added_at": "2021-12-12T06:27:57Z"
-        },
-        {
-          "id": "31fLBp5YftV0HLK6ozUwQA",
-          "name": "Thank You for the Honey, Honey",
-          "artists": [
-            "Teenage Dads"
-          ],
-          "album": "Club Echo",
-          "duration_ms": 213694,
-          "explicit": false,
-          "popularity": 33,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/31fLBp5YftV0HLK6ozUwQA"
-          },
-          "preview_url": null,
-          "added_at": "2022-01-23T10:07:06Z"
-        },
-        {
-          "id": "3YtXuSR83MgBTHKijOdNzy",
-          "name": "Bus",
-          "artists": [
-            "Pandamic"
-          ],
-          "album": "Bus",
-          "duration_ms": 196293,
-          "explicit": true,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/3YtXuSR83MgBTHKijOdNzy"
-          },
-          "preview_url": null,
-          "added_at": "2022-01-29T01:05:13Z"
-        },
-        {
-          "id": "0da8z3hA1tZGF9L8tgiKSY",
-          "name": "Our Paradise",
-          "artists": [
-            "The Terrys"
-          ],
-          "album": "Our Paradise",
-          "duration_ms": 184000,
-          "explicit": false,
-          "popularity": 53,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/0da8z3hA1tZGF9L8tgiKSY"
-          },
-          "preview_url": null,
-          "added_at": "2022-01-29T01:05:20Z"
-        },
-        {
-          "id": "2R3FRbGT1cp82BbgAfyRIG",
-          "name": "deep booze",
-          "artists": [
-            "Tubescreamers"
-          ],
-          "album": "Tubescreamers",
-          "duration_ms": 225176,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/2R3FRbGT1cp82BbgAfyRIG"
-          },
-          "preview_url": null,
-          "added_at": "2022-02-04T05:07:32Z"
-        },
-        {
-          "id": "0mPclV5NwUH5gycJpyTWF5",
-          "name": "Can't Come (Demo)",
-          "artists": [
-            "Matchbreakers"
-          ],
-          "album": "The Body Is A Temple (Demos)",
-          "duration_ms": 135255,
-          "explicit": true,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/0mPclV5NwUH5gycJpyTWF5"
-          },
-          "preview_url": null,
-          "added_at": "2022-02-04T05:07:36Z"
-        },
-        {
-          "id": "6LaQIqVxHP9pAA8mPcNASS",
-          "name": "The Void",
-          "artists": [
-            "The Rropes"
-          ],
-          "album": "The Void",
-          "duration_ms": 220494,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6LaQIqVxHP9pAA8mPcNASS"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:44:11Z"
-        },
-        {
-          "id": "6qgrXWhSrLuwnHXWiO8nIK",
-          "name": "Weekend",
-          "artists": [
-            "Salty Season"
-          ],
-          "album": "Weekend",
-          "duration_ms": 185601,
-          "explicit": true,
-          "popularity": 2,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6qgrXWhSrLuwnHXWiO8nIK"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:44:20Z"
-        },
-        {
-          "id": "15NXxojz1J16Jqx8teslD7",
-          "name": "At Least My Dog Still Loves Me",
-          "artists": [
-            "Suzi"
-          ],
-          "album": "I Like It Better Indoors",
-          "duration_ms": 174576,
-          "explicit": false,
-          "popularity": 17,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/15NXxojz1J16Jqx8teslD7"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:44:41Z"
-        },
-        {
-          "id": "1yCpAeIglUsSRmclZur1w2",
-          "name": "Get Up",
-          "artists": [
-            "Sesame Girl"
-          ],
-          "album": "Get Up",
-          "duration_ms": 235746,
-          "explicit": false,
-          "popularity": 13,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1yCpAeIglUsSRmclZur1w2"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:44:57Z"
-        },
-        {
-          "id": "6Pfma5baS7P2EIjn3Htj9q",
-          "name": "AHHHH!",
-          "artists": [
-            "Teen Jesus and the Jean Teasers"
-          ],
-          "album": "AHHHH!",
-          "duration_ms": 144538,
-          "explicit": true,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6Pfma5baS7P2EIjn3Htj9q"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:45:09Z"
-        },
-        {
-          "id": "6xeNPLbIaPSRuV6bVl5je8",
-          "name": "Waiting List",
-          "artists": [
-            "Super Ghost"
-          ],
-          "album": "Waiting List",
-          "duration_ms": 197996,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6xeNPLbIaPSRuV6bVl5je8"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:45:51Z"
-        },
-        {
-          "id": "6d9RNpnqv03uSjJoyYfJ9L",
-          "name": "Sound of Summer",
-          "artists": [
-            "Busby Marou"
-          ],
-          "album": "Sound of Summer",
-          "duration_ms": 186353,
-          "explicit": false,
-          "popularity": 31,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/6d9RNpnqv03uSjJoyYfJ9L"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:46:06Z"
-        },
-        {
-          "id": "1mkiXH32yFwretU189ozF1",
-          "name": "Stab in the Dark",
-          "artists": [
-            "Hot Reno"
-          ],
-          "album": "Stab in the Dark",
-          "duration_ms": 350003,
-          "explicit": false,
-          "popularity": 1,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/1mkiXH32yFwretU189ozF1"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:46:21Z"
-        },
-        {
-          "id": "00B9N8zxFylor63JfEZ3d8",
-          "name": "Young",
-          "artists": [
-            "Profanity Fair"
-          ],
-          "album": "The Bombastic Bop",
-          "duration_ms": 273920,
-          "explicit": false,
-          "popularity": 3,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/00B9N8zxFylor63JfEZ3d8"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:46:39Z"
-        },
-        {
-          "id": "2ioi71ODTcO5y5d4luqJ6W",
-          "name": "My Baby",
-          "artists": [
-            "Crocodylus"
-          ],
-          "album": "My Baby",
-          "duration_ms": 156535,
-          "explicit": false,
-          "popularity": 0,
-          "external_urls": {
-            "spotify": "https://open.spotify.com/track/2ioi71ODTcO5y5d4luqJ6W"
-          },
-          "preview_url": null,
-          "added_at": "2022-05-07T00:46:52Z"
+          "added_at": "2025-07-24T07:03:16Z"
         }
       ]
     }

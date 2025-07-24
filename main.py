@@ -2,7 +2,7 @@ import os
 import secrets
 import requests
 import json
-from flask import Flask, request, redirect, session, jsonify
+from flask import Flask, request, redirect, session, jsonify, send_file
 from dotenv import load_dotenv
 from urllib.parse import urlencode
 
@@ -218,6 +218,7 @@ def fetch_data():
             </ul>
             <p>Check your console for detailed progress and the JSON file for complete data!</p>
             <p><a href="/">🏠 Go Home</a> | <a href="/fetch-data">🔄 Fetch Again</a></p>
+            <p><a href="/download/{filename}">⬇️ Download JSON File</a></p>
             '''
 
         except requests.exceptions.RequestException as e:
@@ -258,6 +259,15 @@ def fetch_data():
         except Exception as e:
             print(f"❌ Unexpected Error: {e}")
             return f'<h1>Error:</h1><p>Unexpected error: {e}</p><p><a href="/">Go back home</a></p>'
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    """Serve the JSON file for download"""
+    file_path = os.path.join(os.getcwd(), filename)
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return '<h1>Error:</h1><p>File not found.</p>'
 
 if __name__ == '__main__':
     PORT = 8080
