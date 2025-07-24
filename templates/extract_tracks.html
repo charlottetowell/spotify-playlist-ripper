@@ -98,6 +98,23 @@
         .logout:hover {
             text-decoration: underline;
         }
+
+        .go-back {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: 20px;
+        }
+
+        .go-back:hover {
+            background-color: #148f4c;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +133,7 @@
     </div>
 
     <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
+    <button class="go-back" onclick="window.location.href='/extract-playlists'">Go Back to Playlist Selector</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
