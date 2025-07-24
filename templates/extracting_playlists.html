@@ -13,9 +13,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             margin: 0;
+            padding: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            image-rendering: pixelated;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px var(--shadow-color);
+            font-family: 'Press Start 2P', cursive;
+            margin-bottom: 20px;
         }
 
         .loading {
@@ -54,21 +70,100 @@
             margin-top: 20px;
             font-family: 'Press Start 2P', cursive; 
         }
+
+        .playlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            overflow-y: auto;
+            max-height: 50vh;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            background-color: #1a1a1a;
+        }
+
+        .playlist-card {
+            background-color: var(--background-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--primary-color);
+        }
+
+        .playlist-card input[type="checkbox"] {
+            margin-top: 10px;
+        }
+
+        .select-all {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+            margin-bottom: 20px;
+        }
+
+        .select-all:hover {
+            background-color: #148f4c;
+        }
+
+        .logout {
+            background: none;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: 20px;
+            box-shadow: none;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="loading">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <p id="status">Loading playlists...</p>
+    <img src="/static/logo.png" alt="Spotify Logo">
+    <h1 id="status">X playlists found</h1>
+    <button id="select-all" class="select-all">Select All</button>
+    <div id="playlist-grid" class="playlist-grid"></div>
+    <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const playlists = JSON.parse('{{ playlists|tojson|safe }}');
             const statusElement = document.getElementById('status');
             const loadingElement = document.querySelector('.loading');
+            const gridContainer = document.getElementById('playlist-grid');
+            const selectAllButton = document.getElementById('select-all');
+
+            // Render playlists dynamically
+            playlists.forEach(playlist => {
+                const card = document.createElement('div');
+                card.className = 'playlist-card';
+                card.innerHTML = `
+                    <p>${playlist.name}</p>
+                    <input type="checkbox" value="${playlist.id}" class="playlist-checkbox">
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            // Select all functionality
+            selectAllButton.addEventListener('click', () => {
+                document.querySelectorAll('.playlist-checkbox').forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+            });
 
             if (playlists.length > 0) {
                 loadingElement.style.display = 'none';
