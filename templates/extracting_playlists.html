@@ -206,6 +206,34 @@
         .extract-tracks:hover {
             background-color: #0f6e38;
         }
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .filter-button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .filter-button.active {
+            background-color: #148f4c;
+        }
+
+        .filter-button:hover {
+            background-color: #0f6e38;
+        }
     </style>
 </head>
 <body>
@@ -223,12 +251,23 @@
         <img src="/static/search.png" alt="Search Icon">
         <input type="text" id="search-bar" placeholder="Search playlists by name...">
     </div>
+    <div class="filter-container">
+        <button id="filter-my-playlists" class="filter-button active">Only My Playlists</button>
+        <button id="filter-all-playlists" class="filter-button">All Playlists</button>
+    </div>
     <div id="playlist-grid" class="playlist-grid"></div>
     <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const playlists = JSON.parse('{{ playlists|tojson|safe }}');
+            const userId = '{{ session["user_id"] }}'; // Injected from Python
+
+            console.log('User ID:', userId); // Log the user ID
+            if (playlists.length > 0) {
+                console.log('Sample Playlist Object:', playlists[0]); // Log one playlist object for structure comparison
+            }
+
             const statusElement = document.getElementById('status');
             const gridContainer = document.getElementById('playlist-grid');
             const selectAllButton = document.getElementById('select-all');
@@ -236,6 +275,9 @@
             const selectedCountElement = document.getElementById('selected-count');
             const searchBar = document.getElementById('search-bar');
             const extractTracksButton = document.getElementById('extract-tracks');
+            const filterMyPlaylistsButton = document.getElementById('filter-my-playlists');
+            const filterAllPlaylistsButton = document.getElementById('filter-all-playlists');
+            let currentFilter = 'my'; // Default filter
 
             // Render playlists dynamically
             const renderPlaylists = (playlistsToRender) => {
@@ -273,9 +315,15 @@
             // Select all functionality
             selectAllButton.addEventListener('click', () => {
                 document.querySelectorAll('.playlist-card button.select').forEach(button => {
-                    button.classList.remove('select');
-                    button.classList.add('unselect');
-                    button.textContent = 'Unselect';
+                    const card = button.parentElement;
+                    const playlistId = card.dataset.playlistId;
+                    const playlist = playlists.find(p => p.id === playlistId);
+                    if ((currentFilter === 'my' && playlist.owner?.id === userId) ||
+                        (currentFilter === 'all')) {
+                        button.classList.remove('select');
+                        button.classList.add('unselect');
+                        button.textContent = 'Unselect';
+                    }
                 });
                 updateSelectedCount();
             });
@@ -297,35 +345,34 @@
                 renderPlaylists(filteredPlaylists);
             });
 
-            // Extract tracks button functionality
-            extractTracksButton.addEventListener('click', () => {
-                const selectedPlaylists = Array.from(document.querySelectorAll('.playlist-card button.unselect'))
-                    .map(button => button.parentElement.dataset.playlistId); // Use playlist ID instead of name
-
-                // Send selected playlists to the backend
-                fetch('/set-selected-playlists', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ playlists: selectedPlaylists })
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Redirect to extract tracks route
-                        window.location.href = '/extract-tracks';
+            // Filter functionality
+            const applyFilter = () => {
+                const filteredPlaylists = playlists.filter(playlist => {
+                    if (currentFilter === 'my') {
+                        return playlist.owner.id === userId;
                     } else {
-                        console.error('Failed to set selected playlists');
+                        return true; // Show all playlists
                     }
-                })
-                .catch(error => console.error('Error:', error));
+                });
+                renderPlaylists(filteredPlaylists);
+            };
+
+            filterMyPlaylistsButton.addEventListener('click', () => {
+                currentFilter = 'my';
+                filterMyPlaylistsButton.classList.add('active');
+                filterAllPlaylistsButton.classList.remove('active');
+                applyFilter();
             });
 
-            if (playlists.length > 0) {
-                statusElement.textContent = `${playlists.length} playlists found`;
-            } else {
-                statusElement.textContent = 'Loading playlists...';
-            }
+            filterAllPlaylistsButton.addEventListener('click', () => {
+                currentFilter = 'all';
+                filterAllPlaylistsButton.classList.add('active');
+                filterMyPlaylistsButton.classList.remove('active');
+                applyFilter();
+            });
+
+            // Initial filter application
+            applyFilter();
         });
     </script>
 </body>
