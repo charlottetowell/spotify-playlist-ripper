@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetch Complete</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>✅ Data Fetch Complete!</h1>
+    <h2>Summary:</h2>
+    <ul>
+        <li><strong>Playlists Processed:</strong> {{ playlists_processed }}</li>
+        <li><strong>Saved to:</strong> {{ filename }}</li>
+    </ul>
+    <p>Check your console for detailed progress and the JSON file for complete data!</p>
+    <p><a href="/">🏠 Go Home</a> | <a href="/fetch-data">🔄 Fetch Again</a></p>
+    <p><a href="/download/{{ filename }}">⬇️ Download JSON File</a></p>
+</body>
+</html>

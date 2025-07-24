@@ -2,7 +2,7 @@ import os
 import secrets
 import requests
 import json
-from flask import Flask, request, redirect, session, jsonify, send_file
+from flask import Flask, request, redirect, session, jsonify, send_file, render_template
 from dotenv import load_dotenv
 from urllib.parse import urlencode
 
@@ -56,11 +56,7 @@ def fetch_playlist_tracks(playlist_id, access_token):
 @app.route('/')
 def index():
     """Home page with login link"""
-    return '''
-    <h1>Spotify Playlist Ripper</h1>
-    <p>Click the link below to authenticate with Spotify:</p>
-    <a href="/login">Login with Spotify</a>
-    '''
+    return render_template('index.html')
 
 @app.route('/login')
 def login():
@@ -209,17 +205,7 @@ def fetch_data():
             print(f"\n🎉 SUCCESS! Data saved to {filename}")
             print("="*60)
 
-            return f'''
-            <h1>✅ Data Fetch Complete!</h1>
-            <h2>Summary:</h2>
-            <ul>
-                <li><strong>Playlists Processed:</strong> {len(playlist_data)}</li>
-                <li><strong>Saved to:</strong> {filename}</li>
-            </ul>
-            <p>Check your console for detailed progress and the JSON file for complete data!</p>
-            <p><a href="/">🏠 Go Home</a> | <a href="/fetch-data">🔄 Fetch Again</a></p>
-            <p><a href="/download/{filename}">⬇️ Download JSON File</a></p>
-            '''
+            return render_template('summary.html', playlists_processed=len(playlist_data), filename=filename)
 
         except requests.exceptions.RequestException as e:
             print(f"❌ API Error: {e}")
@@ -244,14 +230,7 @@ def fetch_data():
                 for p in playlists
             )
 
-            return f'''
-            <h1>Select Playlists to Fetch</h1>
-            <form method="POST">
-                <ul>{playlist_options}</ul>
-                <button type="submit">Fetch Selected Playlists</button>
-            </form>
-            <p><a href="/">🏠 Go Home</a></p>
-            '''
+            return render_template('fetch_data.html', playlist_options=playlist_options)
 
         except requests.exceptions.RequestException as e:
             print(f"❌ API Error: {e}")

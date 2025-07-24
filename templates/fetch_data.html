@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Playlists</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Select Playlists to Fetch</h1>
+    <form method="POST">
+        <ul>
+            {{ playlist_options|safe }}
+        </ul>
+        <button type="submit">Fetch Selected Playlists</button>
+    </form>
+    <p><a href="/">🏠 Go Home</a></p>
+</body>
+</html>
