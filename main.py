@@ -2,6 +2,7 @@ import os
 import secrets
 import requests
 import json
+import time
 from flask import Flask, request, redirect, session, jsonify, send_file, render_template
 from dotenv import load_dotenv
 from urllib.parse import urlencode
@@ -20,10 +21,22 @@ SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SPOTIFY_API_BASE = 'https://api.spotify.com/v1'
 SCOPES = 'playlist-read-private playlist-read-collaborative'
 
+# Update make_spotify_request to check token validity
 def make_spotify_request(endpoint, access_token):
-    """Make authenticated request to Spotify API"""
+    """Make authenticated request to Spotify API, checking token validity"""
+    # Check if token is expired
+    if 'token_expires_at' in session and time.time() >= session['token_expires_at']:
+        print("Access token expired. Redirecting to login.")
+        return redirect('/login')
+
     headers = {'Authorization': f'Bearer {access_token}'}
     response = requests.get(f"{SPOTIFY_API_BASE}{endpoint}", headers=headers)
+
+    # Handle token expiration errors from Spotify API
+    if response.status_code == 401:
+        print("Access token invalid or expired. Redirecting to login.")
+        return redirect('/login')
+
     response.raise_for_status()
     return response.json()
 
@@ -80,17 +93,16 @@ def login():
 @app.route('/oauth/callback')
 def callback():
     """Handle OAuth callback from Spotify"""
-    
     # Verify state parameter
     state = request.args.get('state')
     if state != session.get('oauth_state'):
         return '<h1>Error:</h1><p>Invalid state parameter</p>'
-    
+
     # Get authorization code
     code = request.args.get('code')
     if not code:
         return '<h1>Error:</h1><p>No authorization code received</p>'
-    
+
     # Exchange code for access token
     token_data = {
         'grant_type': 'authorization_code',
@@ -99,19 +111,21 @@ def callback():
         'client_id': SPOTIFY_CLIENT_ID,
         'client_secret': SPOTIFY_CLIENT_SECRET
     }
-    
+
     try:
         response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
         response.raise_for_status()
         token_info = response.json()
-        
+
         access_token = token_info.get('access_token')
         refresh_token = token_info.get('refresh_token')
         expires_in = token_info.get('expires_in')
-        
-        # Store access token in session for later use
+
+        # Store access token and expiration time in session
         session['access_token'] = access_token
-        
+        session['refresh_token'] = refresh_token
+        session['token_expires_at'] = time.time() + expires_in
+
         # Print the access token to console
         print("="*50)
         print("SPOTIFY OAUTH SUCCESS!")
@@ -120,7 +134,7 @@ def callback():
         print(f"Refresh Token: {refresh_token}")
         print(f"Expires in: {expires_in} seconds")
         print("="*50)
-        
+
         return f'''
         <h1>OAuth Success!</h1>
         <p>Successfully authenticated with Spotify!</p>
@@ -130,7 +144,7 @@ def callback():
         <p><a href="/fetch-data">🎵 Fetch My Playlists</a></p>
         <a href="/">Go back home</a>
         '''
-        
+
     except requests.exceptions.RequestException as e:
         print(f"Error exchanging code for token: {e}")
         return f'<h1>Error:</h1><p>Failed to exchange code for token: {e}</p>'
