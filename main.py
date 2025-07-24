@@ -347,6 +347,29 @@ def extract_tracks():
     # Render the extract_tracks.html page
     return render_template('extract_tracks.html')
 
+@app.route('/api/extract-tracks')
+def api_extract_tracks():
+    """API endpoint to fetch extracted tracks data"""
+    access_token = session.get('access_token')
+    if not access_token:
+        return jsonify({'error': 'No access token found. Please log in again.'}), 401
+
+    selected_playlists = session.get('selected_playlists', [])
+    if not selected_playlists:
+        return jsonify({'error': 'No playlists selected.'}), 400
+
+    try:
+        tracks_data = []
+        for playlist_id in selected_playlists:
+            tracks = fetch_playlist_tracks(playlist_id, access_token)
+            tracks_data.extend(tracks)
+
+        return jsonify(tracks_data)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching tracks: {e}")
+        return jsonify({'error': 'Failed to fetch tracks.'}), 500
+
 if __name__ == '__main__':
     PORT = 8080
     # Check if environment variables are set

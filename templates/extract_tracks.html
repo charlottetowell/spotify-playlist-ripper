@@ -119,10 +119,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Simulate backend processing
-            fetch('/extract-tracks')
+            // Fetch extracted tracks data from the new API endpoint
+            fetch('/api/extract-tracks')
                 .then(response => response.json())
                 .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                        return;
+                    }
+
                     // Hide loading screen and show summary
                     document.getElementById('loading-screen').style.display = 'none';
                     document.getElementById('summary-screen').style.display = 'block';
