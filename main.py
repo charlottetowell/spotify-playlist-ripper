@@ -276,7 +276,25 @@ def redirect_to_dashboard(response):
 
 @app.route('/dashboard')
 def dashboard():
-    return "Hello, World!"
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect('/login')
+
+    if 'user_name' in session and 'user_id' in session:
+        user_name = session['user_name']
+        user_id = session['user_id']
+    else:
+        try:
+            user_data = make_spotify_request('/me', access_token)
+            user_name = user_data.get('display_name', 'User')
+            user_id = user_data.get('id')
+            session['user_name'] = user_name  # Store user name in session
+            session['user_id'] = user_id  # Store user ID in session
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching user data: {e}")
+            return '<h1>Error:</h1><p>Failed to fetch user data. Please <a href="/login">login</a> again.</p>'
+
+    return render_template('dashboard.html', user_name=user_name)
 
 if __name__ == '__main__':
     PORT = 8080
