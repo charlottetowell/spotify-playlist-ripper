@@ -304,7 +304,27 @@ def logout():
 
 @app.route('/extract-playlists')
 def extract_playlists():
-    return render_template('extracting_playlists.html')
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect('/login')
+
+    if 'playlists' in session:
+        playlists = session['playlists']
+    else:
+        try:
+            user_id = session.get('user_id')
+            if not user_id:
+                user_data = make_spotify_request('/me', access_token)
+                user_id = user_data.get('id')
+                session['user_id'] = user_id
+
+            playlists = fetch_all_playlists(access_token, user_id)
+            session['playlists'] = playlists  # Cache playlists in session
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching playlists: {e}")
+            return '<h1>Error:</h1><p>Failed to fetch playlists. Please <a href="/login">login</a> again.</p>'
+
+    return render_template('extracting_playlists.html', playlists=playlists)
 
 if __name__ == '__main__':
     PORT = 8080

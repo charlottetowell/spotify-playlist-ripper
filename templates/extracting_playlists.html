@@ -63,5 +63,20 @@
         <div></div>
     </div>
     <p id="status">Loading playlists...</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playlists = JSON.parse('{{ playlists|tojson|safe }}');
+            const statusElement = document.getElementById('status');
+            const loadingElement = document.querySelector('.loading');
+
+            if (playlists.length > 0) {
+                loadingElement.style.display = 'none';
+                statusElement.textContent = `${playlists.length} playlists found`;
+            } else {
+                statusElement.textContent = 'Loading playlists...';
+            }
+        });
+    </script>
 </body>
 </html>
