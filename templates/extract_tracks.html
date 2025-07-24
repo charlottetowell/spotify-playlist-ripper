@@ -69,21 +69,6 @@
             margin-bottom: 20px;
         }
 
-        .summary button {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            font-size: 1rem;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .summary button:hover {
-            background-color: #148f4c;
-        }
-
         .logout {
             background: none;
             color: var(--primary-color);
@@ -99,22 +84,37 @@
             text-decoration: underline;
         }
 
-        .go-back {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            font-size: 1rem;
-            padding: 10px 20px;
+        button.go-back {
+            background: none;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            padding: 3px 8px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Press Start 2P', cursive;
-            margin-top: 20px;
+            margin-top: 20px; /* Add more gap */
+            box-shadow: none; /* Remove box shadow */
         }
 
-        .go-back:hover {
-            background-color: #148f4c;
+        button.go-back:hover {
+            text-decoration: underline;
         }
+
+        .go-back {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 30px;
+        }
+
+        .go-back img {
+            width: 20px;
+            height: 20px;
+            image-rendering: pixelated;
+            margin-top: 35px;
+        }
+
     </style>
 </head>
 <body>
@@ -133,7 +133,10 @@
     </div>
 
     <button class="logout" onclick="window.location.href='/logout'">Logout from Spotify</button>
-    <button class="go-back" onclick="window.location.href='/extract-playlists'">Go Back to Playlist Selector</button>
+    <button class="go-back" onclick="window.location.href='/extract-playlists'">
+        <img src="/static/left-arrow.png" alt="Left Arrow" class="arrow-icon">
+        Go Back
+    </button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
