@@ -58,7 +58,7 @@ def processor():
     if backup_data['CURRENT_STEP'] == 'START':
         print("Processing Spotify playlists...")
         tracks = process_spotify_playlists(spotify_data)
-        print(f"Extracted {len(tracks)} tracks from the input file.")
+        print(f"\tExtracted {len(tracks)} tracks from the input file.")
         backup_data['tracks'] = tracks
         update_backup_file(backup_data, 'PROCESSED_SPOTIFY')
     else:

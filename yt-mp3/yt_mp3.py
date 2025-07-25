@@ -37,8 +37,6 @@ def download_mps(tracks, OUTPUT_FOLDER):
         ]
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(PostDownloadProcessor(), when='post_process')
+        # commenting out - this will instead be handled in playlist folder builder
+        #ydl.add_post_processor(PostDownloadProcessor(), when='post_process')
         ydl.download(URLS)
-        
-if __name__ == '__main__':
-    download_mps()
