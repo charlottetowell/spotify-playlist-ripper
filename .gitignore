@@ -4,6 +4,7 @@
 #MP3
 *.mp3
 /music/
+extracted_tracks.json
 
 # Python
 __pycache__/

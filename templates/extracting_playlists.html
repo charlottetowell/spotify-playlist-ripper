@@ -300,6 +300,36 @@
                 updateSelectedCount();
             };
 
+            // Function to handle the Extract Tracks button click
+            window.extractTracks = () => {
+                const selectedPlaylists = Array.from(document.querySelectorAll('.playlist-card button.unselect'))
+                    .map(button => button.parentElement.dataset.playlistId);
+
+                if (selectedPlaylists.length === 0) {
+                    alert('No playlists selected. Please select at least one playlist.');
+                    return;
+                }
+
+                fetch('/set-selected-playlists', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ playlists: selectedPlaylists })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/extract-tracks';
+                    } else {
+                        alert('Failed to set selected playlists. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            };
+
             // Update selected count
             const updateSelectedCount = () => {
                 const selectedCount = document.querySelectorAll('.playlist-card button.unselect').length;
