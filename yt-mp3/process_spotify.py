@@ -16,22 +16,28 @@ def process_spotify_playlists(spotify_data):
     if not all('tracks' in playlist and isinstance(playlist['tracks'], list) for playlist in spotify_data['playlists']):
         print("Invalid input file structure. Each playlist should have a 'tracks' key with a list of tracks.")
         return []
-    if not all('track_name' in track and 'artists' in track  and 'id' in track for playlist in spotify_data['playlists'] for track in playlist['tracks']):
+    if not all('name' in track and 'artists' in track  and 'id' in track for playlist in spotify_data['playlists'] for track in playlist['tracks']):
         print("Invalid input file structure. Each track should have 'track_name', 'id' and 'artists' keys.")
         return []
         
     #get all unique tracks
-    tracks = set()
+    tracks = []
     for playlist in spotify_data.get('playlists', []):
         for track in playlist.get('tracks', []):
-            track_name = track.get('track_name')
-            artists = ', '.join(artist.get('name') for artist in track.get('artists', []))
+            track_name = track.get('name')
+            artists = ', '.join(track.get('artists', []))
+            album = track.get('album', '')
             track_id = track.get('id', '')
             if track_name and artists:
-                tracks.add({
-                    "track_name": track_name,
-                    "artists": artists,
-                    "track_id": track_id,
-                })
+                #check if id not already in tracks
+                if not any(t['id'] == track_id for t in tracks):
+                    #add track to tracks
+                    tracks.append({
+                        "id": track_id,
+                        "track_name": track_name,
+                        "artists": artists,
+                        "track_id": track_id,
+                        "album": album
+                    })
                 
     return tracks

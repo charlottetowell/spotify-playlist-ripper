@@ -1,6 +1,6 @@
 from yt_dlp import YoutubeDL
 
-def find_youtube_video(song_name, artists):
+def search_youtube_videos(song_name, artists):
     query = f'ytsearch1:{song_name} {artists}'
     ydl_opts = {
         'quiet': True,
@@ -14,8 +14,8 @@ def find_youtube_video(song_name, artists):
                 print("No entries found for the query.")
                 return None
             return {
-                "url": entries[0].get('webpage_url'),
-                "id": entries[0].get('id'),
+                "yt_url": entries[0].get('webpage_url'),
+                "yt_id": entries[0].get('id'),
             }
         except Exception as e:
             return None

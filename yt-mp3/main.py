@@ -39,8 +39,8 @@ def processor():
         
         video_info = search_youtube_videos(track_name, artists)
         if video_info:
-            track['youtube_url'] = video_info.get('url')
-            track['youtube_id'] = video_info.get('id')
+            track['yt_url'] = video_info.get('yt_url')
+            track['yt_id'] = video_info.get('yt_id')
         else:
             unfound_tracks.append(track)
             
@@ -53,6 +53,9 @@ def processor():
     print("Beginning download of YouTube videos as MP3 files...")
     download_mps(tracks, OUTPUT_FOLDER)
     
+if __name__ == '__main__':
+    processor()
+    print("Processing complete, all tracks downloaded to:", OUTPUT_FOLDER)
     
     
     
