@@ -1,8 +1,9 @@
 # Youtube to MP3 Converter
 
-This python script can be used to go from Spotify playlist & track export, to an organise folder structure of downloaded MP3 files.
-
-> Note: it is illegal to *distribute* downloaded content, only use for personal use
+- Parse spotify extract
+- Find valid URLs for each track
+- Download each track
+- Organse folder structure to match playlists
 
 ### Installation
 * Install [yt-dlp](https://github.com/yt-dlp/yt-dlp) library via `pip install yt-dlp[default]`

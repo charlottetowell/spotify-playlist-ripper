@@ -80,6 +80,6 @@ def build_spotify_playlists(spotify_data, OUTPUT_FOLDER):
 
     print(f"\nAll playlists have been organized in the folder: {parent_folder}")
     
-    # #delete original /tracks folder in OUTPUT_FOLDER
-    # shutil.rmtree(os.path.join(OUTPUT_FOLDER, "tracks"))
-    # print("Temp /tracks folder deleted")
+    #delete original /tracks folder in OUTPUT_FOLDER
+    shutil.rmtree(os.path.join(OUTPUT_FOLDER, "tracks"))
+    print("Temp /tracks folder deleted")
