@@ -12,12 +12,15 @@ def download_mps(tracks, OUTPUT_FOLDER):
     
     class PostDownloadProcessor(yt_dlp.postprocessor.PostProcessor):
         def run(self, info):
+            print(f"Post-processing {info['id']}...")
             #rename file based on tracks
             yt_id = info.get('id')
             track = next((track for track in tracks if track.get('yt_id') == yt_id), None)
             new_filename = f"{OUTPUT_FOLDER}/{track.get('track_name')}.mp3"
-            if os.path.exists(new_filename):
-                os.remove(new_filename)
+            old_file_name = f"{OUTPUT_FOLDER}/{yt_id}.{info['ext']}"
+            #rename
+            if os.path.exists(old_file_name):
+                os.rename(old_file_name, new_filename)
             return [], info
     
     URLS = [track.get('youtube_url') for track in tracks if track.get('youtube_url')]
@@ -30,13 +33,11 @@ def download_mps(tracks, OUTPUT_FOLDER):
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',    # Convert to mp3
                 'preferredquality': '192', 
-            },
-            {
-                'key': PostDownloadProcessor
             }
         ]
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.add_post_processor(PostDownloadProcessor(), when='post_process')
         ydl.download(URLS)
         
 if __name__ == '__main__':
