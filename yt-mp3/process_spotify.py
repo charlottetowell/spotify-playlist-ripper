@@ -59,7 +59,7 @@ def build_spotify_playlists(spotify_data, OUTPUT_FOLDER):
         playlist_name = playlist.get('name', 'Unnamed Playlist')
         playlist_folder = os.path.join(parent_folder, playlist_name)
         os.makedirs(playlist_folder, exist_ok=True)
-        sys.stdout.write(f"\r\Processing playlist {playlist_name} - ({processed_playlists}/{len(spotify_data['playlists'])})")
+        sys.stdout.write(f"\tProcessing playlist {playlist_name} - ({processed_playlists}/{len(spotify_data['playlists'])})")
         sys.stdout.flush()
 
         # Loop through each track in the playlist
@@ -78,8 +78,8 @@ def build_spotify_playlists(spotify_data, OUTPUT_FOLDER):
                 # Copy the file to the playlist folder
                 shutil.copy2(source_file, destination_file)
 
-    print(f"All playlists have been organized in the folder: {parent_folder}")
+    print(f"\nAll playlists have been organized in the folder: {parent_folder}")
     
-    #delete original /tracks folder in OUTPUT_FOLDER
-    shutil.rmtree(os.path.join(OUTPUT_FOLDER, "tracks"))
-    print("Temp /tracks folder deleted")
+    # #delete original /tracks folder in OUTPUT_FOLDER
+    # shutil.rmtree(os.path.join(OUTPUT_FOLDER, "tracks"))
+    # print("Temp /tracks folder deleted")

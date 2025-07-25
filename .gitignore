@@ -3,6 +3,7 @@
 
 #MP3
 *.mp3
+/music/
 
 # Python
 __pycache__/

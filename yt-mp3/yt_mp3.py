@@ -10,12 +10,9 @@ def download_mps(tracks, OUTPUT_FOLDER):
     if not tracks or len(tracks) == 0:
         print("No tracks to download.")
         return
-    
-    processed_tracks = []
-    
+
     class PostDownloadProcessor(yt_dlp.postprocessor.PostProcessor):
         def run(self, info):
-            processed_tracks.append(track)
             #rename file based on tracks
             yt_id = info.get('id')
             track = next((track for track in tracks if track.get('yt_id') == yt_id), None)
@@ -24,11 +21,11 @@ def download_mps(tracks, OUTPUT_FOLDER):
             #rename
             if os.path.exists(old_file_name):
                 os.rename(old_file_name, new_filename)
-            sys.stdout.write(f"({len(processed_tracks)}/{len(tracks)}) Completed - just downloaded {track.get('track_name')} by {track.get('artists')}.")
+            sys.stdout.write(f"\tDownloaded {track.get('track_name')} by {track.get('artists')}")
             sys.stdout.flush()
             return [], info
     
-    URLS = [track.get('youtube_url') for track in tracks if track.get('youtube_url')]
+    URLS = [track.get('yt_url') for track in tracks if track.get('yt_url')]
     ydl_opts = {
         'quiet': True,
         'format': 'bestaudio/best',
