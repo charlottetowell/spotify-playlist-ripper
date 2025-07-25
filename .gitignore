@@ -1,6 +1,8 @@
 # Environment variables
 .env
 
+extracted_tracks.json
+
 # Python
 __pycache__/
 *.py[cod]
