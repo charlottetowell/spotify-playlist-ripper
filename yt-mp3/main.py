@@ -1,4 +1,4 @@
-from process_spotify import process_spotify_playlists
+from process_spotify import process_spotify_playlists, build_spotify_playlists
 from search_yt import search_youtube_videos
 from yt_mp3 import download_mps
 
@@ -6,7 +6,7 @@ import os
 import tempfile
 import json
 
-OUTPUT_FOLDER = os.path.join(os.getcwd(), "tracks")
+OUTPUT_FOLDER = os.path.join(os.getcwd(), "music")
 
 def processor():
     #extract command line arg
@@ -102,6 +102,8 @@ def processor():
         download_mps(tracks, OUTPUT_FOLDER)
         print("All MP3s downloaded successfully.")
         update_backup_file(backup_data, 'DOWNLOADED_MP3S')
+        
+    
 
     # Clean up temp file at the end of processing
     if os.path.exists(temp_file_path):

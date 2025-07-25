@@ -1,3 +1,7 @@
+import os
+import sys
+import shutil
+
 
 def process_spotify_playlists(spotify_data):        
     #validate structure of json
@@ -41,3 +45,41 @@ def process_spotify_playlists(spotify_data):
                     })
                 
     return tracks
+
+
+def build_spotify_playlists(spotify_data, OUTPUT_FOLDER):
+    # Define the parent folder for all playlists
+    parent_folder = os.path.join(OUTPUT_FOLDER, "playlists")
+    os.makedirs(parent_folder, exist_ok=True)
+
+    # Loop through each playlist in the Spotify data
+    processed_playlists = 0
+    for playlist in spotify_data.get('playlists', []):
+        processed_playlists += 1
+        playlist_name = playlist.get('name', 'Unnamed Playlist')
+        playlist_folder = os.path.join(parent_folder, playlist_name)
+        os.makedirs(playlist_folder, exist_ok=True)
+        sys.stdout.write(f"\r\Processing playlist {playlist_name} - ({processed_playlists}/{len(spotify_data['playlists'])})")
+        sys.stdout.flush()
+
+        # Loop through each track in the playlist
+        for track in playlist.get('tracks', []):
+            track_id = track.get('id')
+            track_name = track.get('name')
+            artists = ', '.join(track.get('artists', []))
+
+            # Find the corresponding MP3 file in the output folder
+            source_file = os.path.join(f"{OUTPUT_FOLDER}/tracks", f"{track_id}.mp3")
+            if os.path.exists(source_file):
+                # Rename the file to "track_name - artists.mp3"
+                new_file_name = f"{track_name} - {artists}.mp3"
+                destination_file = os.path.join(playlist_folder, new_file_name)
+
+                # Copy the file to the playlist folder
+                shutil.copy2(source_file, destination_file)
+
+    print(f"All playlists have been organized in the folder: {parent_folder}")
+    
+    #delete original /tracks folder in OUTPUT_FOLDER
+    shutil.rmtree(os.path.join(OUTPUT_FOLDER, "tracks"))
+    print("Temp /tracks folder deleted")
